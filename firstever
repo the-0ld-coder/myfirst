@@ -1,0 +1,66 @@
+import random
+import base64
+
+def solve_arithmetic_problems():
+    problems = [
+        ("5 + 3", 5 + 3),
+        ("10 - 4", 10 - 4),
+        ("6 * 7", 6 * 7),
+        ("8 / 2", 8 / 2),
+        ("12 % 5", 12 % 5),
+    ]
+
+    print("Solving Arithmetic Problems:")
+    for problem, solution in problems:
+        print(f"Problem: {problem} | Solution: {solution}")
+
+
+def obfuscate_string(s):
+    return ''.join([chr(ord(c) + random.randint(1, 5)) for c in s])
+
+def deobfuscate_string(s):
+    return ''.join([chr(ord(c) - random.randint(1, 5)) for c in s])
+
+def base64_encode(s):
+    return base64.b64encode(s.encode()).decode()
+
+def base64_decode(s):
+    return base64.b64decode(s).decode()
+
+
+def noisy_function():
+    nums = [random.randint(0, 100) for _ in range(10)]
+    return sum(nums)  
+
+def generate_noise():
+    noise = """abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"""
+    return ''.join(random.choice(noise) for _ in range(random.randint(20, 50)))
+
+hidden_flag = """"""" + base64_encode(flag{Cyb3r_C4rn1v@l_20251}) + """"""""".strip()
+
+random_statements = [
+    f"print('{generate_noise()}')",
+    f"print('{generate_noise()}')",
+    f"print('{generate_noise()}')",
+    f"# Random variable: {obfuscate_string('FLAG_HERE')}",
+]
+
+
+random.shuffle(random_statements)
+
+def main():
+    for statement in random_statements:
+        exec(statement)
+
+    
+    try:
+        print("Flag is:", base64_decode(hidden_flag))
+    except:
+        print("Flag Hinted")
+
+    
+    solve_arithmetic_problems()
+
+if __name__ == "__main__":
+    noisy_function()
+    main()
