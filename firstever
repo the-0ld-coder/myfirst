@@ -36,7 +36,7 @@ def generate_noise():
     noise = """abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"""
     return ''.join(random.choice(noise) for _ in range(random.randint(20, 50)))
 
-hidden_flag = """"""" + base64_encode(cyber_carnival{Cyb3r_C4rn1v@l_2025}) + """"""""".strip()
+hidden_flag = """"""" + base64_encode(cybercarnival{d2VpcmRfY29kZX0=}) + """"""""".strip()
 
 random_statements = [
     f"print('{generate_noise()}')",
